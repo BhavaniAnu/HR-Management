@@ -1,0 +1,22 @@
+.drop{
+    list-style-type: none;
+    li{
+        a{
+            color: dimgrey;
+        }
+    }
+    .dropdown-menu{
+        top: 45px;
+        left: -54px;
+        background-color: #4682b4;
+    }
+}
+.search{
+    button{
+        border-color: #fff;
+        color: #fff;
+    }
+    .btn-outline-success:hover{
+        border: 1px solid green !important;
+    }
+}
