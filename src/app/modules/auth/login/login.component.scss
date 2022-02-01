@@ -1,0 +1,28 @@
+.kk{
+    position: relative; 
+    top:0px;
+}
+.kk::after{
+    position: absolute;
+    content: '';
+    border: 2px solid white;
+    border-radius: 50%;
+    height: 30px;
+    width: 30px;
+    bottom: -700px;
+    left: 40px;
+    animation: animate 2s infinite;
+}
+@keyframes animate {
+    0% {
+        bottom: 0%;
+        transform: rotate(0deg);
+        
+    }
+    100%{
+        top: 100%;
+        transform: rotate(360deg);
+        border-color: #6996bd;
+        
+    }
+}
