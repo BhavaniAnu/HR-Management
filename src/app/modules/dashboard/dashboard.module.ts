@@ -9,6 +9,8 @@ import { EmployeeMainComponent } from './employee-contents/employee-main/employe
 import { DashHomeComponent } from './dash-home/dash-home.component';
 import { ProfileComponent } from './profile/profile/profile.component';
 import { RouterModule } from '@angular/router';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { HttpClientModule } from '@angular/common/http';
 
 
 @NgModule({
@@ -24,7 +26,9 @@ import { RouterModule } from '@angular/router';
   imports: [
     CommonModule,
     RouterModule,
-    DashboardRoutingModule
+    ReactiveFormsModule,
+    DashboardRoutingModule,
+    HttpClientModule
   ],
 })
 export class DashboardModule { }
