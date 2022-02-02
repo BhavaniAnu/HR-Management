@@ -11,7 +11,7 @@ import { HeaderComponent } from './shared/header/header.component';
 @NgModule({
   declarations: [
     AppComponent,
-    HeaderComponent
+    HeaderComponent,
   ],
   imports: [
     BrowserModule,
