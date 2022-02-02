@@ -10,7 +10,10 @@ import { DashHomeComponent } from './dash-home/dash-home.component';
 import { ProfileComponent } from './profile/profile/profile.component';
 import { RouterModule } from '@angular/router';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
+import { InterceptorService } from 'src/app/services/interceptor.service';
+import { AuthServService } from 'src/app/services/auth-serv.service';
+import { AuthGuard } from '../auth/authgaurd';
 
 
 @NgModule({
@@ -30,5 +33,8 @@ import { HttpClientModule } from '@angular/common/http';
     DashboardRoutingModule,
     HttpClientModule
   ],
+  providers:[AuthServService,AuthGuard,{ provide: HTTP_INTERCEPTORS,
+    useClass: InterceptorService,
+    multi: true}]
 })
 export class DashboardModule { }

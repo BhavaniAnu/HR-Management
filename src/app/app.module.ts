@@ -5,6 +5,7 @@ import { RouterModule } from '@angular/router';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { AuthModule } from './modules/auth/auth.module';
+import { AuthGuard } from './modules/auth/authgaurd';
 import { DashboardModule } from './modules/dashboard/dashboard.module';
 import { HeaderComponent } from './shared/header/header.component';
 
@@ -20,7 +21,7 @@ import { HeaderComponent } from './shared/header/header.component';
     RouterModule,
     AppRoutingModule
   ],
-  providers: [],
+  providers: [AuthGuard],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

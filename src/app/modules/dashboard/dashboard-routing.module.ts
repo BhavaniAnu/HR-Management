@@ -9,18 +9,18 @@ import { EmployeeManageComponent } from './employee-contents/employee-manage/emp
 import { ProfileComponent } from './profile/profile/profile.component';
 
 const routes: Routes = [
-  { path: '', component: DashHomeComponent},
-  {path:'profile',component:ProfileComponent},
+  { path: 'home', component: DashHomeComponent},
       {
         path: 'employees',
         component: EmployeeMainComponent,
         children: [
-          { path: '', redirectTo: 'details', pathMatch: 'full' },
+           { path: '', redirectTo: 'details', pathMatch: 'full' },
           { path: 'details', component: EmployeeListComponent },
           { path: 'details/:id', component: EmployeeDetailsComponent },
           { path: 'new', component: EmployeeManageComponent },
         ]
       },
+      {path:'profile',component:ProfileComponent},
     ]
 @NgModule({
     imports: [CommonModule,

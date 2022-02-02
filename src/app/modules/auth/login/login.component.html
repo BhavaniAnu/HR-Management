@@ -4,16 +4,17 @@
         <div class="col-12 col-md-8 col-lg-6 col-xl-5">
           <div class="card shadow-2-strong" style="border-radius: 1rem;">
             <div class="card-body p-5 text-center">
-  
+                    
               <h3 class="mb-5">Sign in</h3>
+              <form [formGroup]="reactiveForm" (submit)="employeeSubmit(this.reactiveForm.value)">
   
               <div class="form-outline mb-4">
-                <input type="email" id="typeEmailX-2" class="form-control form-control-lg" />
+                <input type="email" formControlName="email" id="typeEmailX-2" class="form-control form-control-lg" />
                 <label class="form-label" for="typeEmailX-2">Email</label>
               </div>
   
               <div class="form-outline mb-4">
-                <input type="password" id="typePasswordX-2" class="form-control form-control-lg" />
+                <input type="password" formControlName="password" id="typePasswordX-2" class="form-control form-control-lg" />
                 <label class="form-label" for="typePasswordX-2">Password</label>
               </div>
   
@@ -24,14 +25,17 @@
                   type="checkbox"
                   value=""
                   id="form1Example3"
+                  formControlName="checkbox"
                 />
                 <label class="form-check-label pl-2" for="form1Example3"> Remember password </label>
               </div>
   
               <button class="btn bg-color text-white btn-lg btn-block" type="submit">Login</button>
+             
               <!-- <button class="btn btn-lg btn-block btn-primary" style="background-color: #dd4b39;" type="submit"><i class="fab fa-google me-2"></i> Sign in with google</button>
               <button class="btn btn-lg btn-block btn-primary mb-2" style="background-color: #3b5998;" type="submit"><i class="fab fa-facebook-f me-2"></i>Sign in with facebook</button> -->
-  
+             </form>  
+             {{login_user_msg}}
             </div>
           </div>
         </div>
