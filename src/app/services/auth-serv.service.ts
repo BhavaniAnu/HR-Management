@@ -23,7 +23,7 @@ export class AuthServService {
 
    }
   public loginUser(value:any){
-    this.loginData = value
+    this.loginData = value;
     return this.http.post(this.loginUrl,value)
    }
 
@@ -32,9 +32,8 @@ export class AuthServService {
     if (localStorage.getItem('token') != null) {
       this.callRefreshToken()
         .subscribe(res => {
-          // console.log('Token retrieve successful', res);
+          console.log('Token retrieve successful', res);
           localStorage.setItem('token', res.token);
-          // localStorage.setItem('refreshToken', res.refresh_token);
           next.handle(request);
           location.reload();
         },
@@ -53,8 +52,6 @@ export class AuthServService {
     return throwError(error);
   }
 
-
-
   callRefreshToken(): Observable<any> {
     localStorage.removeItem('token');
     // console.log("refresh token called ", localStorage.getItem("refreshToken"));
@@ -66,22 +63,23 @@ export class AuthServService {
       'refresh_token': localStorage.getItem('token')
     };
 
-    return this.http.post<any>(this.loginUrl, this.loginData, { headers: this.tokenHeader })
+    return this.http.post<any>(this.loginUrl, data, { headers: this.tokenHeader })
       .pipe(catchError(this.errorHandler));
   }
 
-
    isAdmin() {
-    return localStorage.getItem('user') === 'ADMIN';
+    return localStorage.getItem('user') === 'admin';
   }
 
    logout() {
-    // console.log("Logged Out called");
+    console.log("Logged Out called");
     localStorage.removeItem('token');
-    localStorage.removeItem('refreshToken');
     localStorage.removeItem('user');
     localStorage.clear();
     this.router.navigate(['/']);
+    this.http.post<any>(Constant.API_ENDPOINT +'auth/logout','logout').subscribe((res:any)=>{
+      console.log(res);
+    })
    }
    
 }
