@@ -10,6 +10,7 @@ export class AuthServService {
 
 
   private loginUrl = Constant.API_ENDPOINT + '/auth/login';
+  private logoutURL = Constant.API_ENDPOINT +'/auth/logout';
   private _client_id = 'demo-client';
   private _client_secret = 'demo-secret';
   private tokenHeader = {
@@ -23,8 +24,8 @@ export class AuthServService {
 
    }
   public loginUser(value:any){
-    this.loginData = value
-    return this.http.post(this.loginUrl,value)
+    this.loginData = value;
+    return this.http.post(this.loginUrl,value);
    }
 
    refreshToken(request: HttpRequest<any>, next: HttpHandler) {
@@ -32,15 +33,14 @@ export class AuthServService {
     if (localStorage.getItem('token') != null) {
       this.callRefreshToken()
         .subscribe(res => {
-          // console.log('Token retrieve successful', res);
+          console.log('Token retrieve successful', res);
           localStorage.setItem('token', res.token);
-          // localStorage.setItem('refreshToken', res.refresh_token);
           next.handle(request);
           location.reload();
         },
           err => {
             // console.log('refresh token also results into error ', err);
-            this.logout();
+            this.logout('logout');
           });
     } else {
       // console.log("Cant use Refresh token");
@@ -53,8 +53,6 @@ export class AuthServService {
     return throwError(error);
   }
 
-
-
   callRefreshToken(): Observable<any> {
     localStorage.removeItem('token');
     // console.log("refresh token called ", localStorage.getItem("refreshToken"));
@@ -66,22 +64,20 @@ export class AuthServService {
       'refresh_token': localStorage.getItem('token')
     };
 
-    return this.http.post<any>(this.loginUrl, this.loginData, { headers: this.tokenHeader })
+    return this.http.post<any>(this.loginUrl, data, { headers: this.tokenHeader })
       .pipe(catchError(this.errorHandler));
   }
 
-
    isAdmin() {
-    return localStorage.getItem('user') === 'ADMIN';
+    return localStorage.getItem('user') === 'admin';
   }
 
-   logout() {
-    // console.log("Logged Out called");
+   logout(logout:any) {
     localStorage.removeItem('token');
-    localStorage.removeItem('refreshToken');
     localStorage.removeItem('user');
     localStorage.clear();
     this.router.navigate(['/']);
+    return this.http.post<any>(this.logoutURL,'logout')
    }
    
 }
