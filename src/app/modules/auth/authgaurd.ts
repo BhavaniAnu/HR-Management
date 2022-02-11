@@ -1,16 +1,22 @@
 import { Injectable } from '@angular/core';
 import { CanActivate, ActivatedRouteSnapshot, RouterStateSnapshot, Router } from '@angular/router';
 import { Observable } from 'rxjs';
+import { AuthServService } from 'src/app/services/auth-serv.service';
+import { EmployeeService } from 'src/app/services/employee.service';
 
-@Injectable()
+@Injectable({
+  providedIn: 'root' // ADDED providedIn root here.
+})
 export class AuthGuard implements CanActivate {
-  constructor(private router: Router) {
-
+  constructor(private router: Router,private employee:EmployeeService, private authser:AuthServService) {
+  console.log(",,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,")
   }
 
-  canActivate(
-    next: ActivatedRouteSnapshot,
-    state: RouterStateSnapshot): Observable<boolean> | Promise<boolean> | boolean {
+  canActivate(next: ActivatedRouteSnapshot, state: RouterStateSnapshot
+    ): Observable<boolean> | Promise<boolean> | boolean {
+      console.log(this.employee.userData);
+      
+      console.log(localStorage.getItem('token'))
       if (localStorage.getItem('token') != null) {
         return true;
       }

@@ -18,6 +18,7 @@ export class AuthServService {
     'Content-Type': 'application/x-www-form-urlencoded'
   };
   loginData: any;
+  userData: any;
 
 
   constructor(private http:HttpClient, private router:Router) {

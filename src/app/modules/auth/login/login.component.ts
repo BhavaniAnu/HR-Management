@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { Router } from '@angular/router';
 import { AuthServService } from 'src/app/services/auth-serv.service';
+import { EmployeeService } from 'src/app/services/employee.service';
 
 @Component({
   selector: 'app-login',
@@ -13,7 +14,7 @@ export class LoginComponent implements OnInit {
   haserror: boolean = false;
   login_msg!: string;
   login_user_msg: any
-  constructor(private builder: FormBuilder, private authser: AuthServService, private router: Router) {
+  constructor(private builder: FormBuilder, private authser: AuthServService, private router: Router, private employee:EmployeeService) {
     this.reactiveForm = builder.group({
       email: "",
       password: "",
@@ -30,10 +31,12 @@ export class LoginComponent implements OnInit {
   employeeSubmit(value: any) {
     this.authser.loginUser(value)
       .subscribe((res: any) => {
-        console.log("Token reterive successful", res.token)
         this.haserror = false;
         this.login_msg = 'Login in, Please wait... !!!';
         localStorage.setItem('token', res.token);
+        localStorage.setItem('user',res.data.user.role);
+        this.employee.userData = res.data.user;
+        console.log("Token reterive successful",res, res.token)
         this.router.navigate(['/home']);
       },
         error => {
