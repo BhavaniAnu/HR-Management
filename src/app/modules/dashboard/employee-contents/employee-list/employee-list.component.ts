@@ -1,6 +1,9 @@
-import { Component, OnInit } from '@angular/core';
-import { EmployeeService } from 'src/app/services/employee.service';
+import { Component, OnInit, Output, EventEmitter } from '@angular/core';
+import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
+import { AuthServService } from 'src/app/services/auth-serv.service';
 
+import { EmployeeService } from 'src/app/services/employee.service';
+import { EmployeeDetailsComponent } from '../employee-details/employee-details.component';
 @Component({
   selector: 'app-employee-list',
   templateUrl: './employee-list.component.html',
@@ -8,18 +11,56 @@ import { EmployeeService } from 'src/app/services/employee.service';
 })
 export class EmployeeListComponent implements OnInit {
 
+  employees: any;
+  emp: boolean = true;
+  finalDataArray = [];
 
-  constructor(private employee:EmployeeService) { 
-    const user = this.employee.userData 
-  }
+  //  public modalRef?: BsModalRef;
 
- public ngOnInit(): void {
-   this.getAllUsers();
-  }
- 
-  getAllUsers(){
-    this.employee.getAllEmployeess().subscribe((res:any)=>{
-      console.log(res)
+  constructor(private employee: EmployeeService,
+    public dialog: MatDialog, private authSer: AuthServService
+  ) {
+    const user = this.employee.userData;
+    this.getAllUsers();
+
+    this.authSer.searchTerm.subscribe((res: string) => {
+      this.search(res);
     })
   }
+
+  public ngOnInit(): void {
+  }
+
+  public getAllUsers() {
+    this.employee.getAllEmployeess().subscribe((employees: any) => {
+      this.employees = Object.values(employees.data.data);
+    });
+  }
+  public onclick(email: any) {
+    this.employee.userSubject.next(email);
+
+  }
+
+  openDialog(employee: any) {
+    const dialogConfig = new MatDialogConfig();
+    dialogConfig.width = dialogConfig.minWidth = '800px';
+    dialogConfig.hasBackdrop = false;
+    dialogConfig.data = {
+      employeeName: employee,
+      popupopen: true
+    }
+    const dialogRef = this.dialog.open(EmployeeDetailsComponent, dialogConfig);
+
+    dialogRef.afterClosed().subscribe(result => {
+      console.log(`Dialog result: ${result}`);
+    });
+  }
+
+  search(value: string) {
+    this.employees = this.employees.filter(
+      (val: any) => val['name'].toLowerCase().includes(value));
+
+  }
 }
+
+
