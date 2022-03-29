@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+ import { NgModule ,CUSTOM_ELEMENTS_SCHEMA} from '@angular/core';
 import { CommonModule } from '@angular/common';
 
 import { DashboardRoutingModule } from './dashboard-routing.module';
@@ -10,11 +10,9 @@ import { DashHomeComponent } from './dash-home/dash-home.component';
 import { ProfileComponent } from './profile/profile/profile.component';
 import { RouterModule } from '@angular/router';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
-import { InterceptorService } from 'src/app/services/interceptor.service';
+import { HttpClientModule } from '@angular/common/http';
 import { AuthServService } from 'src/app/services/auth-serv.service';
 import { AuthGuard } from '../auth/authgaurd';
-
 
 @NgModule({
   declarations: [
@@ -23,18 +21,21 @@ import { AuthGuard } from '../auth/authgaurd';
     EmployeeManageComponent,
     EmployeeMainComponent,
     DashHomeComponent,
-    ProfileComponent,
+    ProfileComponent, 
     
   ],
   imports: [
     CommonModule,
     RouterModule,
+    FormsModule,
     ReactiveFormsModule,
     DashboardRoutingModule,
     HttpClientModule
   ],
-  providers:[AuthServService,AuthGuard,{ provide: HTTP_INTERCEPTORS,
-    useClass: InterceptorService,
-    multi: true}]
+  schemas: [
+    CUSTOM_ELEMENTS_SCHEMA
+  ],
+  
+  providers:[AuthServService,AuthGuard],
 })
 export class DashboardModule { }

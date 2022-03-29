@@ -9,14 +9,11 @@ import { EmployeeService } from 'src/app/services/employee.service';
 })
 export class AuthGuard implements CanActivate {
   constructor(private router: Router,private employee:EmployeeService, private authser:AuthServService) {
-  console.log(",,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,")
   }
 
   canActivate(next: ActivatedRouteSnapshot, state: RouterStateSnapshot
     ): Observable<boolean> | Promise<boolean> | boolean {
-      console.log(this.employee.userData);
       
-      console.log(localStorage.getItem('token'))
       if (localStorage.getItem('token') != null) {
         return true;
       }

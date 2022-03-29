@@ -10,15 +10,13 @@
             </tr>
         </thead>
             <tbody>
-                <tr>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
+                <tr *ngFor="let employee of employees" (click)="openDialog(employee)">
+                    <td>{{employee._id}}</td>
+                    <td>{{employee.name}}</td>
+                    <td>{{employee.email}}</td>
+                    <td>{{employee.role}}</td>
+                    <td>NA</td>
                 </tr>
-
             </tbody>
-        
     </table>
 </div>

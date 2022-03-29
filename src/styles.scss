@@ -1,5 +1,7 @@
 /* You can add global styles to this file, and also import other style files */
 //header text-color//
+@import '~@angular/material/theming';
+@include mat-core();
 a{
     text-decoration: none;
     color: #fff !important;
@@ -14,3 +16,7 @@ a{
 .bg-2{
     background-color: #6996bd;
 }
+
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+

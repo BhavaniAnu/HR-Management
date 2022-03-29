@@ -1,1 +1,30 @@
-<p>employee-details works!</p>
+<div style="background-color: rgb(45, 163, 218);">
+    <i class="fa fa-close" style="font-size:36px" (click)="closepopup()">close</i>
+    <div class="card-body p-5 text-center">
+
+        <h3 class="mb-5">EmployeeDetails</h3>
+        <form [formGroup]="updateForm" (submit)="employeeSubmit(updateForm.value)">
+
+            <div class="form-outline mb-4">
+                <label class="form-label" for="typeEmailX-2">Name</label>
+                <input type="text" formControlName="name" id="typeEmailX-2" name="first" class="form-control form-control-lg"
+                    [(ngModel)]="maindata.employeeName.name" [readonly]="maindata.popupopen" />
+            </div>
+
+            <div class="form-outline mb-4">
+                <label class="form-label" for="typePasswordX-2">EmpId</label>
+                <input type="text" formControlName="empId" id="empId" name="second" class="form-control form-control-lg"
+                    [(ngModel)]="maindata.employeeName._id" [readonly]="maindata.popupopen" />
+            </div>
+
+            <div class="form-outline mb-4">
+                <label class="form-label" for="typePasswordX-2">Email</label>
+                <input type="email" formControlName="email" id="empId" name="third" class="form-control form-control-lg"
+                    [(ngModel)]="maindata.employeeName.email" [readonly]="maindata.popupopen" />
+            </div>
+            <button class="btn bg-color text-white btn-lg btn-block btn-success" type="submit">Save</button>
+        </form>
+        <button class="btn text-white btn-lg btn-block"  [disabled]="clicked" (click)="editForm()">Edit</button>
+
+    </div>
+</div>

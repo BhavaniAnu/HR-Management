@@ -1,7 +1,7 @@
 import { HttpClient, HttpHandler, HttpRequest } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
-import { catchError, Observable, throwError } from 'rxjs';
+import { catchError, Observable, Subject, throwError } from 'rxjs';
 import { Constant } from '../constants/authconstant';
 @Injectable({
   providedIn: 'root'
@@ -19,9 +19,11 @@ export class AuthServService {
   };
   loginData: any;
   userData: any;
+  searchTerm = new Subject<any>()
 
 
   constructor(private http:HttpClient, private router:Router) {
+    this.searchTerm.asObservable();
 
    }
   public loginUser(value:any){
@@ -51,6 +53,8 @@ export class AuthServService {
 
   errorHandler(error: any) {
     console.log('Auth Service api error ', error);
+   
+   
     return throwError(error);
   }
 
@@ -80,5 +84,5 @@ export class AuthServService {
     this.router.navigate(['/']);
     return this.http.post<any>(this.logoutURL,'logout')
    }
-   
+
 }
