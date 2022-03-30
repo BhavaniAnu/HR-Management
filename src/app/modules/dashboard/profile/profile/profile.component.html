@@ -3,8 +3,8 @@
         <div class="d-flex justify-content-evenly">
             <img src="assets/user-2.png" alt="user" width="150px" height="150px" class="pos-1">
             <div class="direct">
-                <h4>HRM MANAGEMENT(#14357)</h4>
-                <span class="d-block">technical Lead</span>
+                <h4>{{User?.[0].name}}T#{{User?.[0]._id}}</h4>
+                <span class="d-block">{{User?.[0].role}}</span>
                 <span class="d-block mb-3">Bengalore</span>
                 <span class="view p-2"><a href="#">View direct Reports</a></span>
             </div>
@@ -28,7 +28,7 @@
                                 <div class="d-flex py-1">
                                     <span class="w-15">Email</span>
                                     <span class="px-3">&#58;</span>
-                                    <span>&#95;</span>
+                                    <span>{{User?.[0].email}}</span>
                                 </div>
                                 <div class="d-flex py-1">
                                     <span class="w-15">Twitter</span>
@@ -52,10 +52,10 @@
                               <li class="list-group-item">
                                   <div class="d-flex justify-content-between">
                                       <span><b>Languages</b></span>
-                                      <span><i class="fas fa-plus-circle"></i></span>
+                                      <span><i class="fas fa-plus-circle" (click)="save()"></i></span>
                                   </div>
                                   <div class="py-3">
-                                    <span>Add Languages</span>
+                                    <span><textarea placeholder="AddLanguages" type="text" rows="4" cols="50" [(ngModel)]="languages"></textarea ></span>
                                   </div>
                               </li>
                               <li class="list-group-item">
@@ -64,7 +64,7 @@
                                     <span><i class="fas fa-plus-circle"></i></span>
                                 </div>
                                 <div class="py-3">
-                                  <span>Add Achievements</span>
+                                  <span><textarea placeholder="Addachievements" type="text" rows="4" cols="50" [(ngModel)]="achievements"></textarea></span>
                                 </div>
                             </li>
                             <li class="list-group-item">
@@ -73,7 +73,7 @@
                                     <span><i class="fas fa-plus-circle"></i></span>
                                 </div>
                                 <div class="py-3">
-                                  <span>Add Hobbies</span>
+                                  <span><textarea placeholder="AddHobbies" type="text" rows="4" cols="50" [(ngModel)]="hobbies"></textarea></span>
                                 </div>
                             </li>
                             </ul>

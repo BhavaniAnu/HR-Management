@@ -13,6 +13,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { AuthServService } from 'src/app/services/auth-serv.service';
 import { AuthGuard } from '../auth/authgaurd';
+import { ApplyWorkFromHomeComponent } from './leave-contents/apply-work-from-home/apply-work-from-home.component';
 
 @NgModule({
   declarations: [
@@ -21,7 +22,8 @@ import { AuthGuard } from '../auth/authgaurd';
     EmployeeManageComponent,
     EmployeeMainComponent,
     DashHomeComponent,
-    ProfileComponent, 
+    ProfileComponent,
+    ApplyWorkFromHomeComponent, 
     
   ],
   imports: [

@@ -1,7 +1,7 @@
 import { HttpClient, HttpHandler, HttpRequest } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
-import { catchError, Observable, Subject, throwError } from 'rxjs';
+import { BehaviorSubject, catchError, Observable, Subject, throwError } from 'rxjs';
 import { Constant } from '../constants/authconstant';
 @Injectable({
   providedIn: 'root'
@@ -18,7 +18,6 @@ export class AuthServService {
     'Content-Type': 'application/x-www-form-urlencoded'
   };
   loginData: any;
-  userData: any;
   searchTerm = new Subject<any>()
 
 
@@ -75,6 +74,14 @@ export class AuthServService {
 
    isAdmin() {
     return localStorage.getItem('user') === 'admin';
+  }
+
+  tokenData():any{
+    const token = localStorage.getItem('token');
+    if(token){
+    const userData = window.atob(token.split('.')[1]);
+    return userData;
+    }
   }
 
    logout(logout:any) {
