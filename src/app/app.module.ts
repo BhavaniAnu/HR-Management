@@ -10,15 +10,17 @@ import { AuthGuard } from './modules/auth/authgaurd';
 import { DashboardModule } from './modules/dashboard/dashboard.module';
 import { InterceptorService } from './services/interceptor.service';
 import { HeaderComponent } from './shared/header/header.component';
-import {MatDialogModule,MatDialogRef,MAT_DIALOG_DATA } from '@angular/material/dialog';
-import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
+import {
+  MatDialogModule,
+  MatDialogRef,
+  MAT_DIALOG_DATA,
+} from '@angular/material/dialog';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { EmployeeDetailsComponent } from './modules/dashboard/employee-contents/employee-details/employee-details.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { Ng2SearchPipeModule } from 'ng2-search-filter';
 @NgModule({
-  declarations: [
-    AppComponent,
-    HeaderComponent,
-  ],
+  declarations: [AppComponent, HeaderComponent],
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
@@ -28,21 +30,22 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     AppRoutingModule,
     MatDialogModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    Ng2SearchPipeModule,
   ],
-  entryComponents: [
-    EmployeeDetailsComponent 
-],
-  providers: [AuthGuard,{ provide: HTTP_INTERCEPTORS,
-    useClass: InterceptorService,
-    multi: true},{ 
+  entryComponents: [EmployeeDetailsComponent],
+  providers: [
+    AuthGuard,
+    { provide: HTTP_INTERCEPTORS, useClass: InterceptorService, multi: true },
+    {
       provide: MatDialogRef,
-      useValue: []
-       }, 
-      { 
-      provide: MAT_DIALOG_DATA, 
-      useValue: [] 
-      }],
-  bootstrap: [AppComponent]
+      useValue: [],
+    },
+    {
+      provide: MAT_DIALOG_DATA,
+      useValue: [],
+    },
+  ],
+  bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}
