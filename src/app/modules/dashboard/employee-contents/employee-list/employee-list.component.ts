@@ -7,28 +7,29 @@ import { EmployeeDetailsComponent } from '../employee-details/employee-details.c
 @Component({
   selector: 'app-employee-list',
   templateUrl: './employee-list.component.html',
-  styleUrls: ['./employee-list.component.scss']
+  styleUrls: ['./employee-list.component.scss'],
 })
 export class EmployeeListComponent implements OnInit {
-
   employees: any;
   emp: boolean = true;
   finalDataArray = [];
+  searchText: any;
 
   //  public modalRef?: BsModalRef;
 
-  constructor(private employee: EmployeeService,
-    public dialog: MatDialog, private authSer: AuthServService
-  ) {
+  constructor(
+    private employee: EmployeeService,
+    public dialog: MatDialog,
+    private authSer: AuthServService
+  ) {}
+
+  public ngOnInit(): void {
     const user = this.employee.userData;
     this.getAllUsers();
 
     this.authSer.searchTerm.subscribe((res: string) => {
       this.search(res);
-    })
-  }
-
-  public ngOnInit(): void {
+    });
   }
 
   public getAllUsers() {
@@ -38,7 +39,6 @@ export class EmployeeListComponent implements OnInit {
   }
   public onclick(email: any) {
     this.employee.userSubject.next(email);
-
   }
 
   openDialog(employee: any) {
@@ -47,20 +47,16 @@ export class EmployeeListComponent implements OnInit {
     dialogConfig.hasBackdrop = false;
     dialogConfig.data = {
       employeeName: employee,
-      popupopen: true
-    }
+      popupopen: true,
+    };
     const dialogRef = this.dialog.open(EmployeeDetailsComponent, dialogConfig);
 
-    dialogRef.afterClosed().subscribe(result => {
+    dialogRef.afterClosed().subscribe((result) => {
       console.log(`Dialog result: ${result}`);
     });
   }
 
   search(value: string) {
-    this.employees = this.employees.filter(
-      (val: any) => val['name'].toLowerCase().includes(value));
-
+    this.searchText = value;
   }
 }
-
-

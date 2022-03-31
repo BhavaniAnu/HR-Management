@@ -1,4 +1,4 @@
- import { NgModule ,CUSTOM_ELEMENTS_SCHEMA} from '@angular/core';
+import { NgModule, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
 import { DashboardRoutingModule } from './dashboard-routing.module';
@@ -13,6 +13,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { AuthServService } from 'src/app/services/auth-serv.service';
 import { AuthGuard } from '../auth/authgaurd';
+import { Ng2SearchPipeModule } from 'ng2-search-filter';
 import { ApplyWorkFromHomeComponent } from './leave-contents/apply-work-from-home/apply-work-from-home.component';
 
 @NgModule({
@@ -23,8 +24,7 @@ import { ApplyWorkFromHomeComponent } from './leave-contents/apply-work-from-hom
     EmployeeMainComponent,
     DashHomeComponent,
     ProfileComponent,
-    ApplyWorkFromHomeComponent, 
-    
+    ApplyWorkFromHomeComponent,
   ],
   imports: [
     CommonModule,
@@ -32,12 +32,11 @@ import { ApplyWorkFromHomeComponent } from './leave-contents/apply-work-from-hom
     FormsModule,
     ReactiveFormsModule,
     DashboardRoutingModule,
-    HttpClientModule
+    HttpClientModule,
+    Ng2SearchPipeModule,
   ],
-  schemas: [
-    CUSTOM_ELEMENTS_SCHEMA
-  ],
-  
-  providers:[AuthServService,AuthGuard],
+  schemas: [CUSTOM_ELEMENTS_SCHEMA],
+
+  providers: [AuthServService, AuthGuard],
 })
-export class DashboardModule { }
+export class DashboardModule {}

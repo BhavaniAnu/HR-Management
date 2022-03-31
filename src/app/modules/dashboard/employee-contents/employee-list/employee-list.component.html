@@ -1,22 +1,25 @@
 <div>
-    <table class="table table-bordered table-striped table-hover">
-        <thead class="table-success">
-            <tr>
-                <td>Employee Id</td>
-                <td>Employee Name</td>
-                <td>Email id</td>
-                <td>Designation</td>
-                <td>MobileNo</td>
-            </tr>
-        </thead>
-            <tbody>
-                <tr *ngFor="let employee of employees" (click)="openDialog(employee)">
-                    <td>{{employee._id}}</td>
-                    <td>{{employee.name}}</td>
-                    <td>{{employee.email}}</td>
-                    <td>{{employee.role}}</td>
-                    <td>NA</td>
-                </tr>
-            </tbody>
-    </table>
+  <table class="table table-bordered table-striped table-hover">
+    <thead class="table-success">
+      <tr>
+        <td>Employee Id</td>
+        <td>Employee Name</td>
+        <td>Email id</td>
+        <td>Designation</td>
+        <td>MobileNo</td>
+      </tr>
+    </thead>
+    <tbody>
+      <tr
+        *ngFor="let employee of employees | filter: searchText"
+        (click)="openDialog(employee)"
+      >
+        <td>{{ employee._id }}</td>
+        <td>{{ employee.name }}</td>
+        <td>{{ employee.email }}</td>
+        <td>{{ employee.role }}</td>
+        <td>NA</td>
+      </tr>
+    </tbody>
+  </table>
 </div>
