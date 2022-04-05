@@ -18,7 +18,7 @@ import {
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { EmployeeDetailsComponent } from './modules/dashboard/employee-contents/employee-details/employee-details.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { Ng2SearchPipeModule } from 'ng2-search-filter';
+// import { Ng2SearchPipeModule } from 'ng2-search-filter';
 @NgModule({
   declarations: [AppComponent, HeaderComponent],
   imports: [
@@ -31,7 +31,7 @@ import { Ng2SearchPipeModule } from 'ng2-search-filter';
     MatDialogModule,
     FormsModule,
     ReactiveFormsModule,
-    Ng2SearchPipeModule,
+    // Ng2SearchPipeModule,
   ],
   entryComponents: [EmployeeDetailsComponent],
   providers: [

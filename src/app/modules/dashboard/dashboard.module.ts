@@ -13,9 +13,9 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { AuthServService } from 'src/app/services/auth-serv.service';
 import { AuthGuard } from '../auth/authgaurd';
-import { Ng2SearchPipeModule } from 'ng2-search-filter';
+// import { Ng2SearchPipeModule } from 'ng2-search-filter';
 import { ApplyWorkFromHomeComponent } from './leave-contents/apply-work-from-home/apply-work-from-home.component';
-
+import { SearchPipe } from 'src/app/shared/header/pipes/search.pipe';
 @NgModule({
   declarations: [
     EmployeeDetailsComponent,
@@ -25,6 +25,7 @@ import { ApplyWorkFromHomeComponent } from './leave-contents/apply-work-from-hom
     DashHomeComponent,
     ProfileComponent,
     ApplyWorkFromHomeComponent,
+    SearchPipe
   ],
   imports: [
     CommonModule,
@@ -33,7 +34,6 @@ import { ApplyWorkFromHomeComponent } from './leave-contents/apply-work-from-hom
     ReactiveFormsModule,
     DashboardRoutingModule,
     HttpClientModule,
-    Ng2SearchPipeModule,
   ],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
 

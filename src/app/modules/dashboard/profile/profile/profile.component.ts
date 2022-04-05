@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Subject } from 'rxjs';
 import { AuthServService } from 'src/app/services/auth-serv.service';
 import { EmployeeService } from 'src/app/services/employee.service';
 
@@ -13,9 +14,13 @@ export class ProfileComponent implements OnInit {
   languages:string = ''
   hobbies:string = ''
   achievements:string =''
+  phoneNumber:any;
+
+  
 
   constructor(private authSer:AuthServService, private empSer:EmployeeService) { 
    this.userData = JSON.parse(this.authSer.tokenData());
+   this.empSer.userid.next(this.userData.id);
    this.empSer.getEmployeeById(this.userData.id).subscribe((res:any)=>{   
      this.User = Object.values(res.data);
      console.log(this.User);

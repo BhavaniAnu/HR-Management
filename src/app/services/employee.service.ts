@@ -11,8 +11,10 @@ export class EmployeeService {
   apiUrl = Constant.API_ENDPOINT;
   userData: any;
   userSubject = new Subject;
+  userid = new Subject<any>();
   constructor(private http: HttpClient, private router: Router, private authSer: AuthServService) {
     this.userSubject.asObservable();
+    this.userid.asObservable();
 
   }
 
