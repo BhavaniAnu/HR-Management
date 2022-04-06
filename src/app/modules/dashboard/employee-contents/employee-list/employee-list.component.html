@@ -11,7 +11,7 @@
     </thead>
     <tbody>
       <tr
-        *ngFor="let employee of employees | filter: searchText"
+        *ngFor="let employee of employees  | search:searchText"
         (click)="openDialog(employee)"
       >
         <td>{{ employee._id }}</td>
