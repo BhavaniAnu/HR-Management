@@ -11,9 +11,9 @@ export class TimesheetComponent implements OnInit {
 
   rows: any
   value: any;
-  myModel: any;
-  tue: string = ''
-  tar: any;
+  dummy : string[] = [];
+  map = new Map();
+  taskday:any
   constructor() { }
 
   ngOnInit(): void {
@@ -24,7 +24,8 @@ export class TimesheetComponent implements OnInit {
   
 
   onKey(event:any) {const inputValue = event.target.value;
-  console.log(inputValue)
+  console.log(inputValue);
+  this.value = inputValue
   }
 
   edit(){
@@ -35,19 +36,23 @@ export class TimesheetComponent implements OnInit {
     let inputs = document.querySelectorAll('input');
     for (let i = 0; i < inputs.length; i++) {
       inputs[i].addEventListener('change', (e) => {
-        this.tar = e;
-        const { target } = e;
-
-           console.log(target);
-         
+       this.taskday = (e.target as HTMLInputElement).name;
+         this.joint(this.taskday)
         });
       }
-      // this.joint()
     }
 
-    // joint(){
-    //   console.log();
-    // }
+
+
+    joint(value:string){
+      if(this.value){
+        this.map.set(this.value, value)
+        // this.dummy.push(value);
+        // console.log(this.dummy);
+        console.log(this.map)
+      }
+     
+    }
        
 
 }
