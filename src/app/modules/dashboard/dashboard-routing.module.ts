@@ -7,6 +7,7 @@ import { EmployeeListComponent } from './employee-contents/employee-list/employe
 import { EmployeeMainComponent } from './employee-contents/employee-main/employee-main.component';
 import { EmployeeManageComponent } from './employee-contents/employee-manage/employee-manage.component';
 import { ProfileComponent } from './profile/profile/profile.component';
+import { TimesheetComponent } from './timeSheet/timesheet/timesheet.component';
 
 const routes: Routes = [
   { path: 'home', component: DashHomeComponent},
@@ -16,11 +17,11 @@ const routes: Routes = [
         children: [
            { path: '', redirectTo: 'details', pathMatch: 'full' },
           { path: 'details', component: EmployeeListComponent },
-          { path: 'details/:id', component: EmployeeDetailsComponent },
-          { path: 'new', component: EmployeeManageComponent },
+          { path: 'newEmployee', component: EmployeeManageComponent },
         ]
       },
       {path:'profile',component:ProfileComponent},
+      {path:'timeSheet',component:TimesheetComponent}
     ]
 @NgModule({
     imports: [CommonModule,
