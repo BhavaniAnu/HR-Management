@@ -14,7 +14,7 @@ export class DashHomeComponent implements OnInit {
   }
 
   onclick(){
-    this.router.navigate(['employees/details'])
+    this.router.navigate(['employees'])
   }
 
 }

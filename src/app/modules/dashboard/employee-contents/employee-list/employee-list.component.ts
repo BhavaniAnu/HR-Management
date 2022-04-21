@@ -12,7 +12,7 @@ import { EmployeeDetailsComponent } from '../employee-details/employee-details.c
 export class EmployeeListComponent implements OnInit {
   employees: any;
   emp: boolean = true;
-  finalDataArray = [];
+  // finalDataArray = [];
   searchText: any;
 
   //  public modalRef?: BsModalRef;

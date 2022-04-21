@@ -16,6 +16,7 @@ import { AuthGuard } from '../auth/authgaurd';
 // import { Ng2SearchPipeModule } from 'ng2-search-filter';
 import { ApplyWorkFromHomeComponent } from './leave-contents/apply-work-from-home/apply-work-from-home.component';
 import { SearchPipe } from 'src/app/shared/header/pipes/search.pipe';
+import { TimesheetComponent } from './timeSheet/timesheet/timesheet.component';
 @NgModule({
   declarations: [
     EmployeeDetailsComponent,
@@ -25,7 +26,8 @@ import { SearchPipe } from 'src/app/shared/header/pipes/search.pipe';
     DashHomeComponent,
     ProfileComponent,
     ApplyWorkFromHomeComponent,
-    SearchPipe
+    SearchPipe,
+    TimesheetComponent
   ],
   imports: [
     CommonModule,
